@@ -9,7 +9,7 @@ public class AccountManager {
 
     public AccountManager() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:password_manager.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:accounts.lhgdb");
 
             try (Statement statement = connection.createStatement()) {
                 statement.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT UNIQUE NOT NULL, password TEXT NOT NULL)");
