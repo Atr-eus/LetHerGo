@@ -1,19 +1,14 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class DashBoard {
-    JFrame frame = new JFrame("DashBoard");
-    JLabel welcome = new JLabel();
-
-    DashBoard(String username) {
-        welcome.setBounds(10, 10, 300, 50);
-        welcome.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        welcome.setText("Welcome, " + username + "!");
-
-        frame.add(welcome);
+    public DashBoard(String username) {
+        JFrame frame = new JFrame();
+        frame.setTitle("DashBoard - Let Her Go");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setLayout(null);
+        frame.setSize(300, 150);
+
+        JLabel welcome_label = new JLabel("Welcome to your very own dashboard, " + username + "!", SwingConstants.CENTER);
+        frame.add(welcome_label);
         frame.setVisible(true);
     }
 }
