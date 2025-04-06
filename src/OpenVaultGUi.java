@@ -6,7 +6,7 @@ public class OpenVaultGUi {
     private JTextField db_name_field;
     private JPasswordField master_passwd_field;
     private JLabel status_label;
-    private VaultManager vault_manager;
+    private final VaultManager vault_manager;
 
     public OpenVaultGUi() {
         vault_manager = new VaultManager();
@@ -38,18 +38,22 @@ public class OpenVaultGUi {
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.getContentPane().add(status_label, BorderLayout.SOUTH);
 
-        create_db_btn.addActionListener(e -> {
+        create_db_btn.addActionListener(_ -> {
             String db_name = db_name_field.getText();
             char[] master_passwd = master_passwd_field.getPassword();
-            String res = vault_manager.create_db(db_name, master_passwd);
-            status_label.setText(res);
+            DBStatus res = vault_manager.create_db(db_name, master_passwd);
+            status_label.setText(res == DBStatus.CREATE_SUCCESSFUL ? "Database created." : "Creation failed");
         });
 
-        open_db_btn.addActionListener(e -> {
+        open_db_btn.addActionListener(_ -> {
             String db_name = db_name_field.getText();
             char[] master_passwd = master_passwd_field.getPassword();
-            String res = vault_manager.open_db(db_name, master_passwd);
-            status_label.setText(res);
+            DBStatus res = vault_manager.open_db(db_name, master_passwd);
+            status_label.setText(res == DBStatus.OPEN_SUCCESSFUL ? "Database opened." : "Open failed");
+
+            if (res == DBStatus.OPEN_SUCCESSFUL) {
+                frame.dispose();
+            }
         });
 
         frame.setVisible(true);
