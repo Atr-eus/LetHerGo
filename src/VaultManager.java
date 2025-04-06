@@ -1,6 +1,7 @@
 import java.io.File;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.logging.Level;
 
 public class VaultManager {
     public DBStatus create_db(String db_name, char[] master_passwd) {
@@ -34,7 +35,7 @@ public class VaultManager {
             System.out.println("Database created.");
             return DBStatus.CREATE_SUCCESSFUL;
         } catch (Exception e) {
-            e.printStackTrace();
+            CryptoUtil.logger.log(Level.SEVERE, "An error occurred.", e);
             System.out.println("Error creating database.");
             return DBStatus.CREATE_FAILED;
         } finally {
@@ -80,7 +81,7 @@ public class VaultManager {
                 return DBStatus.OPEN_FAILED;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CryptoUtil.logger.log(Level.SEVERE, "An error occurred.", e);
             System.out.println("Error opening database.");
             return DBStatus.OPEN_FAILED;
         } finally {

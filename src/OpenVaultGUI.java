@@ -1,14 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class OpenVaultGUi {
+public class OpenVaultGUI {
     private JFrame frame;
     private JTextField db_name_field;
     private JPasswordField master_passwd_field;
     private JLabel status_label;
     private final VaultManager vault_manager;
 
-    public OpenVaultGUi() {
+    public OpenVaultGUI() {
         vault_manager = new VaultManager();
     }
 

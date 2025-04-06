@@ -5,9 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 public class Vault {
-    String db_name;
+    private final String db_name;
 
     Vault(String db_name) {
         this.db_name = db_name;
@@ -36,7 +37,7 @@ public class Vault {
                 tab_model.addRow(new Object[]{i, site, username, passwd});
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CryptoUtil.logger.log(Level.SEVERE, "An error occurred.", e);
         }
 
         frame.getContentPane().add(new JScrollPane(table), BorderLayout.CENTER);
